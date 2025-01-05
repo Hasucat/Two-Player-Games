@@ -1,20 +1,41 @@
 // src/screens/HomeScreen.js
-import React from 'react';
-import { View, Text, Button, StyleSheet, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Button, TouchableOpacity, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons'; // Importing icon
+import Settings from './Settings'; // Import the new Settings component
 
 const HomeScreen = ({ navigation }) => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [volume, setVolume] = useState(50); // Default volume: 50
+  const [resolution, setResolution] = useState(1080); // Default resolution: 1080p
+  const [fps, setFps] = useState(30); // Default FPS: 30
+
+  const toggleModal = () => {
+    setIsModalVisible(!isModalVisible);
+  };
+
   return (
     <View style={styles.container}>
-      <Image
-        source={{ uri: 'https://example.com/your-image.png' }}
-        style={styles.image}
-      />
+      <TouchableOpacity style={styles.settingsIcon} onPress={toggleModal}>
+        <Icon name="settings-outline" size={30} color="#333" />
+      </TouchableOpacity>
+
       <Text style={styles.title}>Welcome to Two Player Games</Text>
-      <Text style={styles.subtitle}>Choose a game to start playing!</Text>
       <Button
         title="Play Tic Tac Toe"
         onPress={() => navigation.navigate('TicTacToe')}
-        color="#4CAF50"
+      />
+
+      {/* Pass necessary props to Settings component */}
+      <Settings
+        isModalVisible={isModalVisible}
+        toggleModal={toggleModal}
+        volume={volume}
+        setVolume={setVolume}
+        resolution={resolution}
+        setResolution={setResolution}
+        fps={fps}
+        setFps={setFps}
       />
     </View>
   );
@@ -25,24 +46,18 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f0f8ff',
-    paddingHorizontal: 20, 
+    backgroundColor: '#fff',
+    paddingHorizontal: 20,
   },
-  image: {
-    width: 150,
-    height: 150,
-    marginBottom: 30, 
-    borderRadius: 75,
+  settingsIcon: {
+    position: 'absolute',
+    top: 20,
+    left: 10,
+    padding: 10,
   },
   title: {
     fontSize: 32,
     fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 10,
-  },
-  subtitle: {
-    fontSize: 18,
-    color: '#777',
     marginBottom: 20,
   },
 });
