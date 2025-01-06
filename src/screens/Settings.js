@@ -20,26 +20,26 @@ const Settings = ({ isModalVisible, toggleModal, volume, setVolume, resolution, 
             minimumValue={0}
             maximumValue={100}
             value={volume}
-            onValueChange={setVolume}
-          />
-          <Text style={styles.modalLabel}>Resolution: {resolution}p</Text>
-          <Slider
+            onValueChange={(value) => setVolume(Math.round(value))} // Ensure integer value
+            />
+            <Text style={styles.modalLabel}>Resolution: {Math.round(resolution)}p</Text>
+            <Slider
             style={styles.slider}
             minimumValue={720}
             maximumValue={2160}
             step={360}
             value={resolution}
-            onValueChange={setResolution}
-          />
-          <Text style={styles.modalLabel}>FPS: {fps}</Text>
-          <Slider
+            onValueChange={(value) => setResolution(Math.round(value))} // Ensure integer value
+            />
+            <Text style={styles.modalLabel}>FPS: {Math.round(fps)}</Text>
+            <Slider
             style={styles.slider}
             minimumValue={1}
             maximumValue={60}
             step={1}
             value={fps}
-            onValueChange={setFps}
-          />
+            onValueChange={(value) => setFps(Math.round(value))} // Ensure integer value
+            />
           <TouchableOpacity style={styles.closeButton} onPress={toggleModal}>
             <Text style={styles.closeButtonText}>Close</Text>
           </TouchableOpacity>
@@ -57,7 +57,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalContent: {
-    backgroundColor: '#fff',
+    backgroundColor: '#d1caba',
+    borderWidth: 4,   // Set the border width
+    borderColor: '#694f17', // Set the border color
     padding: 20,
     borderRadius: 10,
     width: '80%',
@@ -66,10 +68,14 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
+    textAlign: 'center', 
+    color: '#694f17',
   },
   modalLabel: {
     fontSize: 18,
+    fontWeight: 'bold',
     marginVertical: 10,
+    color: '#3c3e4d'
   },
   slider: {
     width: '100%',
@@ -77,7 +83,7 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     marginTop: 20,
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#4a3d22',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
@@ -86,6 +92,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#fff',
     fontWeight: 'bold',
+    textAlign: 'center', 
   },
 });
 
