@@ -46,7 +46,7 @@ const HomeScreen = ({ navigation }) => {
           </TouchableOpacity>
 
           {/* Card 2 */}
-          <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('TicTacToe')}>
+          <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Connect 4')}>
             <ImageBackground source={require('../../assets/Tic Tac Toe.jpeg')} style={styles.cardImage} resizeMode="cover">
             </ImageBackground>
           </TouchableOpacity>
