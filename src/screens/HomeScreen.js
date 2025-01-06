@@ -53,7 +53,7 @@ const HomeScreen = ({ navigation }) => {
      </View>
      <View style={styles.iconRow}>
       {/* Card 1 */}
-      <TouchableOpacity style={styles.card}  onPress={() => navigation.navigate('TicTacToe')}>
+      <TouchableOpacity style={styles.card}  onPress={() => navigation.navigate('SlidingPuzzle')}>
             <ImageBackground source={require('../../assets/Tic Tac Toe.jpeg')} style={styles.cardImage} resizeMode="cover">
             </ImageBackground>
           </TouchableOpacity>
